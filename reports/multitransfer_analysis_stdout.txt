@@ -1,0 +1,677 @@
+﻿ATT 0x17/0x19 PDUs: 268
+time span: 24.277 .. 116.258 s
+
+=== CMD histogram ===
+  0x3E     H->R: 89
+  0x34     R->H: 55
+  0x36     H->R: 23
+  0x2F     R->H: 15
+  0x1D     R->H: 9
+  0x1D     H->R: 7
+  0x3D     H->R: 7
+  0x22     R->H: 6
+  0x3D     R->H: 6
+  0x21     R->H: 4
+  0x34     H->R: 4
+  0x25     R->H: 3
+  0x2F     H->R: 3
+  0x36     R->H: 3
+  0x37     R->H: 3
+  0x44     R->H: 3
+  non-JY   R->H: 3
+  0x01     H->R: 2
+  0x01     R->H: 2
+  0x06     R->H: 2
+  0x08     H->R: 2
+  0x08     R->H: 2
+  0x1A     H->R: 2
+  0x1A     R->H: 2
+  0x21     H->R: 2
+  0x22     H->R: 2
+  0x24     H->R: 2
+  0x2D     R->H: 2
+  0x35     R->H: 1
+  0x40     H->R: 1
+  0x40     R->H: 1
+
+=== Compact timeline (key cmds) ===
+  t=  24.277 R->H cmd=0x25 tot=1 idx=1 len=12 pl=98007301060010a2daa501a0
+  t=  24.292 R->H NON-JY 0c98007301060010a23a004800
+  t=  24.322 R->H cmd=0x44 tot=1 idx=1 len=11 pl=0a53523131362d31304132
+  t=  24.352 R->H cmd=0x37 tot=1 idx=1 len=2 pl=0001
+  t=  24.367 R->H cmd=0x1D tot=1 idx=1 len=14 pl=2724de6a0000290600002a00c604
+  t=  24.382 H->R cmd=0x2F tot=1 idx=1 len=2 pl=0000
+  ... (1 host keepalives 0x3E/0x2F omitted) ...
+  t=  24.817 R->H cmd=0x2F tot=1 idx=1 len=2 pl=0000
+  t=  25.132 H->R cmd=0x3D tot=1 idx=1 len=0 pl=
+  t=  25.192 R->H cmd=0x3D tot=1 idx=1 len=2 pl=0000
+  t=  25.507 H->R cmd=0x21 tot=1 idx=1 len=1 list_bytes=1 head=00
+  t=  25.627 H->R cmd=0x1D tot=1 idx=1 len=0
+  t=  25.672 R->H cmd=0x1D tot=1 idx=1 len=14 pl=2924de6a0000290600002a00c604
+  t=  25.702 R->H cmd=0x21 tot=2 idx=1 len=112 list_bytes=112 head=73f7dd6a00002c01e00100000d0074019ff8dd6a00005802ab0300001900d702
+  t=  25.733 R->H cmd=0x21 tot=2 idx=2 len=96 list_bytes=96 head=5704de6a0000b4008c05000026004c04db07de6a00003c00a205000027005d04
+  ... (1 host keepalives 0x3E/0x2F omitted) ...
+  t=  25.942 H->R cmd=0x22 tot=1 idx=1 len=1 list_bytes=1 head=00
+  t=  26.017 R->H cmd=0x22 tot=3 idx=1 len=120 list_bytes=120 head=3ef6dd6a0000000273f7dd6a000000029ff8dd6a00000002cbf9dd6a00000002
+  t=  26.019 R->H cmd=0x22 tot=3 idx=2 len=120 list_bytes=120 head=db07de6a000000020709de6a00000002330ade6a000000025f0bde6a00000002
+  t=  26.077 R->H cmd=0x22 tot=3 idx=3 len=8 list_bytes=8 head=6f19de6a00000002
+  t=  26.107 H->R cmd=0x01 tot=1 idx=1 len=7 select=2a24de6a000000
+  t=  26.152 R->H cmd=0x01 tot=1 idx=1 len=7 select=ea070a190f2d2e
+  t=  26.257 H->R cmd=0x1A tot=1 idx=1 len=13 pl=001f74966785e9a3ae7d9e26ca
+  t=  26.302 R->H cmd=0x1A tot=1 idx=1 len=13 pl=001f74966785e9a3ae7d9e26ca
+  t=  26.633 R->H cmd=0x2D tot=1 idx=1 len=6 pl=8046dd6a0000
+  ... (1 host keepalives 0x3E/0x2F omitted) ...
+  t=  27.532 H->R cmd=0x1D tot=1 idx=1 len=0
+  t=  27.907 H->R cmd=0x1D tot=1 idx=1 len=0
+  t=  27.967 R->H cmd=0x1D tot=1 idx=1 len=14 pl=2b24de6a0000290600002a00c604
+  ... (1 host keepalives 0x3E/0x2F omitted) ...
+  t=  29.858 H->R cmd=0x1D tot=1 idx=1 len=0
+  t=  29.948 R->H cmd=0x1D tot=1 idx=1 len=14 pl=2d24de6a0000290600002a00c604
+  t=  30.367 H->R cmd=0x1D tot=1 idx=1 len=0
+  t=  30.592 R->H cmd=0x1D tot=1 idx=1 len=14 pl=2e24de6a0000290600002a00c604
+  t=  30.997 R->H cmd=0x25 tot=1 idx=1 len=12 pl=98007301060010a2daa501a0
+  t=  30.998 R->H NON-JY 0c98007301060010a23a004800
+  t=  31.012 R->H cmd=0x44 tot=1 idx=1 len=11 pl=0a53523131362d31304132
+  t=  31.072 R->H cmd=0x37 tot=1 idx=1 len=2 pl=0001
+  t=  31.073 R->H cmd=0x1D tot=1 idx=1 len=14 pl=2e24de6a0000290600002a00c604
+  ... (77 host keepalives 0x3E/0x2F omitted) ...
+  t=  73.568 R->H cmd=0x2F tot=1 idx=1 len=2 pl=1000
+  t=  78.668 R->H cmd=0x2F tot=1 idx=1 len=2 pl=4000
+  t=  78.683 R->H cmd=0x2F tot=1 idx=1 len=2 pl=4000
+  t=  82.613 R->H cmd=0x2F tot=1 idx=1 len=2 pl=5000
+  t=  87.638 R->H cmd=0x2F tot=1 idx=1 len=2 pl=4000
+  t=  87.638 R->H cmd=0x2F tot=1 idx=1 len=2 pl=4000
+  t=  91.403 R->H cmd=0x2F tot=1 idx=1 len=2 pl=5000
+  t=  96.683 R->H cmd=0x2F tot=1 idx=1 len=2 pl=4000
+  t=  96.683 R->H cmd=0x2F tot=1 idx=1 len=2 pl=4000
+  t= 103.178 R->H cmd=0x25 tot=1 idx=1 len=12 pl=98007301060010a2daa501a0
+  t= 103.179 R->H NON-JY 0c98007301060010a23a004800
+  t= 103.193 R->H cmd=0x44 tot=1 idx=1 len=11 pl=0a53523131362d31304132
+  t= 103.223 R->H cmd=0x37 tot=1 idx=1 len=2 pl=0001
+  t= 103.238 R->H cmd=0x1D tot=1 idx=1 len=14 pl=7624de6a0000290600002a00c604
+  t= 103.253 H->R cmd=0x2F tot=1 idx=1 len=2 pl=0000
+  t= 103.298 R->H cmd=0x2F tot=1 idx=1 len=2 pl=4000
+  t= 103.673 R->H cmd=0x2F tot=1 idx=1 len=2 pl=4000
+  ... (1 host keepalives 0x3E/0x2F omitted) ...
+  t= 104.348 H->R cmd=0x3D tot=1 idx=1 len=0 pl=
+  t= 104.408 R->H cmd=0x3D tot=1 idx=1 len=2 pl=0300
+  t= 104.573 H->R cmd=0x3D tot=1 idx=1 len=0 pl=
+  t= 104.588 H->R cmd=0x3D tot=1 idx=1 len=0 pl=
+  t= 104.618 R->H cmd=0x3D tot=1 idx=1 len=2 pl=0300
+  t= 104.723 H->R cmd=0x21 tot=1 idx=1 len=1 list_bytes=1 head=00
+  t= 104.768 R->H cmd=0x21 tot=2 idx=1 len=112 list_bytes=112 head=73f7dd6a00002c01e00100000d0074019ff8dd6a00005802ab0300001900d702
+  t= 104.798 R->H cmd=0x21 tot=2 idx=2 len=96 list_bytes=96 head=5704de6a0000b4008c05000026004c04db07de6a00003c00a205000027005d04
+  t= 104.873 H->R cmd=0x1D tot=1 idx=1 len=0
+  t= 104.918 R->H cmd=0x1D tot=1 idx=1 len=14 pl=7824de6a0000290600002a00c604
+  ... (1 host keepalives 0x3E/0x2F omitted) ...
+  t= 105.188 H->R cmd=0x40 tot=1 idx=1 len=0
+  t= 105.233 R->H cmd=0x40 tot=1 idx=1 len=0
+  t= 105.338 H->R cmd=0x22 tot=1 idx=1 len=1 list_bytes=1 head=00
+  t= 105.398 R->H cmd=0x22 tot=3 idx=1 len=120 list_bytes=120 head=3ef6dd6a0000000273f7dd6a000000029ff8dd6a00000002cbf9dd6a00000002
+  t= 105.428 R->H cmd=0x22 tot=3 idx=2 len=120 list_bytes=120 head=db07de6a000000020709de6a00000002330ade6a000000025f0bde6a00000002
+  t= 105.458 R->H cmd=0x22 tot=3 idx=3 len=8 list_bytes=8 head=6f19de6a00000002
+  t= 105.488 H->R cmd=0x01 tot=1 idx=1 len=7 select=7924de6a000000
+  t= 105.563 R->H cmd=0x01 tot=1 idx=1 len=7 select=ea070a190f2f05
+  t= 105.638 H->R cmd=0x1A tot=1 idx=1 len=13 pl=001f74966785e9a3ae7d9e26ca
+  t= 105.683 R->H cmd=0x1A tot=1 idx=1 len=13 pl=001f74966785e9a3ae7d9e26ca
+  t= 105.953 H->R cmd=0x2F tot=1 idx=1 len=2 pl=0000
+  t= 105.998 R->H cmd=0x2F tot=1 idx=1 len=2 pl=4000
+  t= 106.103 H->R cmd=0x34 tot=1 idx=1 len=0
+  t= 106.298 R->H cmd=0x34 tot=18 idx=1 len=486 pl=5924de6a0000b86bdc7742fa3341e76a0272c8f8
+  t= 106.315 R->H cmd=0x34 tot=18 idx=2 len=486 pl=5a24de6a0000b86a1a72a9a0387459c452cc167f
+  t= 106.399 H->R cmd=0x1D tot=1 idx=1 len=0
+  ... (1 host keepalives 0x3E/0x2F omitted) ...
+  t= 106.698 R->H cmd=0x2D tot=1 idx=1 len=6 pl=8046dd6a0000
+  t= 106.699 R->H cmd=0x1D tot=1 idx=1 len=14 pl=7924de6a0000290600002a00c604
+  t= 106.700 H->R cmd=0x3D tot=1 idx=1 len=0 pl=
+  t= 107.133 R->H cmd=0x3D tot=1 idx=1 len=2 pl=0300
+  t= 107.226 R->H cmd=0x34 tot=18 idx=18 len=486 pl=6a24de6a0000b86bdf1e361af677c02b5a1a5c44
+  t= 107.253 R->H cmd=0x36 tot=1 idx=1 len=2 pl=0300
+  t= 107.328 H->R cmd=0x36 tot=1 idx=1 len=2 pl=0300
+  t= 107.493 H->R cmd=0x34 tot=1 idx=1 len=0
+  t= 107.538 R->H cmd=0x34 tot=18 idx=1 len=486 pl=6224de6a0000b86a6f7ace0d181f71fad8223437
+  t= 107.556 R->H cmd=0x34 tot=18 idx=2 len=486 pl=6324de6a0000b86be040f7cbc9495fa5ecbbd743
+  t= 107.868 R->H cmd=0x2F tot=1 idx=1 len=2 pl=2000
+  t= 107.883 H->R cmd=0x3D tot=1 idx=1 len=0 pl=
+  ... (1 host keepalives 0x3E/0x2F omitted) ...
+  t= 108.333 R->H cmd=0x3D tot=1 idx=1 len=2 pl=0200
+  t= 108.413 R->H cmd=0x34 tot=18 idx=18 len=486 pl=7324de6a0000b86bdfcb24cb8b21b87b57ae2a38
+  t= 108.453 R->H cmd=0x36 tot=1 idx=1 len=2 pl=0200
+  t= 108.498 H->R cmd=0x36 tot=1 idx=1 len=2 pl=0200
+  t= 108.513 H->R cmd=0x36 tot=1 idx=1 len=2 pl=0200
+  t= 108.528 H->R cmd=0x36 tot=1 idx=1 len=2 pl=0200
+  t= 108.543 H->R cmd=0x36 tot=1 idx=1 len=2 pl=0200
+  t= 108.558 H->R cmd=0x36 tot=1 idx=1 len=2 pl=0200
+  t= 108.573 H->R cmd=0x36 tot=1 idx=1 len=2 pl=0200
+  t= 108.588 H->R cmd=0x36 tot=1 idx=1 len=2 pl=0200
+  t= 108.603 H->R cmd=0x36 tot=1 idx=1 len=2 pl=0200
+  t= 108.618 H->R cmd=0x36 tot=1 idx=1 len=2 pl=0200
+  t= 108.633 H->R cmd=0x36 tot=1 idx=1 len=2 pl=0200
+  t= 108.648 H->R cmd=0x36 tot=1 idx=1 len=2 pl=0200
+  t= 108.663 H->R cmd=0x36 tot=1 idx=1 len=2 pl=0200
+  t= 108.678 H->R cmd=0x36 tot=1 idx=1 len=2 pl=0200
+  t= 108.693 H->R cmd=0x36 tot=1 idx=1 len=2 pl=0200
+  t= 108.708 H->R cmd=0x36 tot=1 idx=1 len=2 pl=0200
+  t= 108.723 H->R cmd=0x36 tot=1 idx=1 len=2 pl=0200
+  t= 108.738 H->R cmd=0x36 tot=1 idx=1 len=2 pl=0200
+  t= 108.753 H->R cmd=0x36 tot=1 idx=1 len=2 pl=0200
+  t= 108.768 H->R cmd=0x36 tot=1 idx=1 len=2 pl=0200
+  t= 108.783 H->R cmd=0x36 tot=1 idx=1 len=2 pl=0200
+  t= 108.798 H->R cmd=0x36 tot=1 idx=1 len=2 pl=0200
+  t= 109.041 H->R cmd=0x34 tot=1 idx=1 len=0
+  t= 109.044 R->H cmd=0x34 tot=19 idx=1 len=486 pl=6b24de6a0000b86bc24b5de904213b83395c891c
+  t= 109.058 R->H cmd=0x34 tot=19 idx=2 len=486 pl=6c24de6a0000b86bbcf05e0ba0620d64cc8b4870
+  t= 109.533 R->H cmd=0x2F tot=1 idx=1 len=2 pl=2000
+  t= 109.548 H->R cmd=0x3D tot=1 idx=1 len=0 pl=
+  t= 109.868 R->H cmd=0x34 tot=19 idx=19 len=486 pl=7d24de6a0000b86be971364a0187b91a3798d1b5
+  t= 109.923 R->H cmd=0x36 tot=1 idx=1 len=2 pl=0100
+  t= 109.938 R->H cmd=0x3D tot=1 idx=1 len=2 pl=0100
+  t= 109.953 H->R cmd=0x36 tot=1 idx=1 len=2 pl=0100
+  t= 110.299 H->R cmd=0x34 tot=1 idx=1 len=0
+  ... (4 trailing keepalives) ...
+
+=== Detected transfer sessions ===
+  #1: prep=105.187575 start=106.102586 end=107.328224 wall=1.226s
+       packets idx 1..18 / total_field=18 n_data=18 opus_bytes=8640 audio~4.32s
+       ts counter 1792943193..1792943210 (2026-10-25T15:46:33+00:00 .. 2026-10-25T15:46:50+00:00)
+       complete_payload=0300
+  #2: prep=None start=107.493226 end=108.498235 wall=1.005s
+       packets idx 1..18 / total_field=18 n_data=18 opus_bytes=8640 audio~4.32s
+       ts counter 1792943202..1792943219 (2026-10-25T15:46:42+00:00 .. 2026-10-25T15:46:59+00:00)
+       complete_payload=0200
+  #3: prep=None start=109.040741 end=109.95325 wall=0.913s
+       packets idx 1..19 / total_field=19 n_data=19 opus_bytes=9120 audio~4.56s
+       ts counter 1792943211..1792943229 (2026-10-25T15:46:51+00:00 .. 2026-10-25T15:47:09+00:00)
+       complete_payload=0100
+  #4: prep=None start=110.298712 end=None
+       packets idx None..None / total_field=None n_data=0 opus_bytes=0 audio~0.00s
+       ts counter None..None (? .. ?)
+       complete_payload=None
+
+=== File listing payloads (0x21/0x22) ===
+  t=25.507 H->R cmd=0x21 tot=1 idx=1 len=1 raw=00
+    trying rec_size=16:
+  t=25.702 R->H cmd=0x21 tot=2 idx=1 len=112 raw=73f7dd6a00002c01e00100000d0074019ff8dd6a00005802ab0300001900d702cbf9dd6a00009402050400001b001d034ffddd6a00003c00320400001d0040037bfedd6a00007800f30400002200d503ff01de6a00003c00170500002300f1032b03de6a000078005205000024001f04
+    trying rec_size=16:
+      [000] ts=1792931699 2026-10-25T12:34:59+00:00 rest=00002c01e00100000d007401
+      [016] ts=1792931999 2026-10-25T12:39:59+00:00 rest=00005802ab0300001900d702
+      [032] ts=1792932299 2026-10-25T12:44:59+00:00 rest=00009402050400001b001d03
+      [048] ts=1792933199 2026-10-25T12:59:59+00:00 rest=00003c00320400001d004003
+      [064] ts=1792933499 2026-10-25T13:04:59+00:00 rest=00007800f30400002200d503
+      [080] ts=1792934399 2026-10-25T13:19:59+00:00 rest=00003c00170500002300f103
+      [096] ts=1792934699 2026-10-25T13:24:59+00:00 rest=000078005205000024001f04
+  t=25.733 R->H cmd=0x21 tot=2 idx=2 len=96 raw=5704de6a0000b4008c05000026004c04db07de6a00003c00a205000027005d040709de6a00007800b705000027006d04330ade6a0000b400c905000028007b047720de6a00003c00e305000028008f04cf22de6a00003c00290600002a00c604
+    trying rec_size=16:
+      [000] ts=1792934999 2026-10-25T13:29:59+00:00 rest=0000b4008c05000026004c04
+      [016] ts=1792935899 2026-10-25T13:44:59+00:00 rest=00003c00a205000027005d04
+      [032] ts=1792936199 2026-10-25T13:49:59+00:00 rest=00007800b705000027006d04
+      [048] ts=1792936499 2026-10-25T13:54:59+00:00 rest=0000b400c905000028007b04
+      [064] ts=1792942199 2026-10-25T15:29:59+00:00 rest=00003c00e305000028008f04
+      [080] ts=1792942799 2026-10-25T15:39:59+00:00 rest=00003c00290600002a00c604
+  t=25.942 H->R cmd=0x22 tot=1 idx=1 len=1 raw=00
+    trying rec_size=8:
+  t=26.017 R->H cmd=0x22 tot=3 idx=1 len=120 raw=3ef6dd6a0000000273f7dd6a000000029ff8dd6a00000002cbf9dd6a00000002f7fadd6a0000000223fcdd6a000000024ffddd6a000000027bfedd6a00000002a7ffdd6a00000002d300de6a00000002ff01de6a000000022b03de6a000000025704de6a000000028305de6a00000002af06de6a00000002
+    trying rec_size=8:
+      [000] ts=1792931390 2026-10-25T12:29:50+00:00 rest=00000002
+      [008] ts=1792931699 2026-10-25T12:34:59+00:00 rest=00000002
+      [016] ts=1792931999 2026-10-25T12:39:59+00:00 rest=00000002
+      [024] ts=1792932299 2026-10-25T12:44:59+00:00 rest=00000002
+      [032] ts=1792932599 2026-10-25T12:49:59+00:00 rest=00000002
+      [040] ts=1792932899 2026-10-25T12:54:59+00:00 rest=00000002
+      [048] ts=1792933199 2026-10-25T12:59:59+00:00 rest=00000002
+      [056] ts=1792933499 2026-10-25T13:04:59+00:00 rest=00000002
+      [064] ts=1792933799 2026-10-25T13:09:59+00:00 rest=00000002
+      [072] ts=1792934099 2026-10-25T13:14:59+00:00 rest=00000002
+      [080] ts=1792934399 2026-10-25T13:19:59+00:00 rest=00000002
+      [088] ts=1792934699 2026-10-25T13:24:59+00:00 rest=00000002
+      [096] ts=1792934999 2026-10-25T13:29:59+00:00 rest=00000002
+      [104] ts=1792935299 2026-10-25T13:34:59+00:00 rest=00000002
+      [112] ts=1792935599 2026-10-25T13:39:59+00:00 rest=00000002
+  t=26.019 R->H cmd=0x22 tot=3 idx=2 len=120 raw=db07de6a000000020709de6a00000002330ade6a000000025f0bde6a000000028b0cde6a00000002b70dde6a00000002e30ede6a000000020f10de6a000000023b11de6a000000026712de6a000000029313de6a00000002bf14de6a00000002eb15de6a000000021717de6a000000023a18de6a00000002
+    trying rec_size=8:
+      [000] ts=1792935899 2026-10-25T13:44:59+00:00 rest=00000002
+      [008] ts=1792936199 2026-10-25T13:49:59+00:00 rest=00000002
+      [016] ts=1792936499 2026-10-25T13:54:59+00:00 rest=00000002
+      [024] ts=1792936799 2026-10-25T13:59:59+00:00 rest=00000002
+      [032] ts=1792937099 2026-10-25T14:04:59+00:00 rest=00000002
+      [040] ts=1792937399 2026-10-25T14:09:59+00:00 rest=00000002
+      [048] ts=1792937699 2026-10-25T14:14:59+00:00 rest=00000002
+      [056] ts=1792937999 2026-10-25T14:19:59+00:00 rest=00000002
+      [064] ts=1792938299 2026-10-25T14:24:59+00:00 rest=00000002
+      [072] ts=1792938599 2026-10-25T14:29:59+00:00 rest=00000002
+      [080] ts=1792938899 2026-10-25T14:34:59+00:00 rest=00000002
+      [088] ts=1792939199 2026-10-25T14:39:59+00:00 rest=00000002
+      [096] ts=1792939499 2026-10-25T14:44:59+00:00 rest=00000002
+      [104] ts=1792939799 2026-10-25T14:49:59+00:00 rest=00000002
+      [112] ts=1792940090 2026-10-25T14:54:50+00:00 rest=00000002
+  t=26.077 R->H cmd=0x22 tot=3 idx=3 len=8 raw=6f19de6a00000002
+    trying rec_size=8:
+      [000] ts=1792940399 2026-10-25T14:59:59+00:00 rest=00000002
+  t=104.723 H->R cmd=0x21 tot=1 idx=1 len=1 raw=00
+    trying rec_size=16:
+  t=104.768 R->H cmd=0x21 tot=2 idx=1 len=112 raw=73f7dd6a00002c01e00100000d0074019ff8dd6a00005802ab0300001900d702cbf9dd6a00009402050400001b001d034ffddd6a00003c00320400001d0040037bfedd6a00007800f30400002200d503ff01de6a00003c00170500002300f1032b03de6a000078005205000024001f04
+    trying rec_size=16:
+      [000] ts=1792931699 2026-10-25T12:34:59+00:00 rest=00002c01e00100000d007401
+      [016] ts=1792931999 2026-10-25T12:39:59+00:00 rest=00005802ab0300001900d702
+      [032] ts=1792932299 2026-10-25T12:44:59+00:00 rest=00009402050400001b001d03
+      [048] ts=1792933199 2026-10-25T12:59:59+00:00 rest=00003c00320400001d004003
+      [064] ts=1792933499 2026-10-25T13:04:59+00:00 rest=00007800f30400002200d503
+      [080] ts=1792934399 2026-10-25T13:19:59+00:00 rest=00003c00170500002300f103
+      [096] ts=1792934699 2026-10-25T13:24:59+00:00 rest=000078005205000024001f04
+  t=104.798 R->H cmd=0x21 tot=2 idx=2 len=96 raw=5704de6a0000b4008c05000026004c04db07de6a00003c00a205000027005d040709de6a00007800b705000027006d04330ade6a0000b400c905000028007b047720de6a00003c00e305000028008f04cf22de6a00003c00290600002a00c604
+    trying rec_size=16:
+      [000] ts=1792934999 2026-10-25T13:29:59+00:00 rest=0000b4008c05000026004c04
+      [016] ts=1792935899 2026-10-25T13:44:59+00:00 rest=00003c00a205000027005d04
+      [032] ts=1792936199 2026-10-25T13:49:59+00:00 rest=00007800b705000027006d04
+      [048] ts=1792936499 2026-10-25T13:54:59+00:00 rest=0000b400c905000028007b04
+      [064] ts=1792942199 2026-10-25T15:29:59+00:00 rest=00003c00e305000028008f04
+      [080] ts=1792942799 2026-10-25T15:39:59+00:00 rest=00003c00290600002a00c604
+  t=105.338 H->R cmd=0x22 tot=1 idx=1 len=1 raw=00
+    trying rec_size=8:
+  t=105.398 R->H cmd=0x22 tot=3 idx=1 len=120 raw=3ef6dd6a0000000273f7dd6a000000029ff8dd6a00000002cbf9dd6a00000002f7fadd6a0000000223fcdd6a000000024ffddd6a000000027bfedd6a00000002a7ffdd6a00000002d300de6a00000002ff01de6a000000022b03de6a000000025704de6a000000028305de6a00000002af06de6a00000002
+    trying rec_size=8:
+      [000] ts=1792931390 2026-10-25T12:29:50+00:00 rest=00000002
+      [008] ts=1792931699 2026-10-25T12:34:59+00:00 rest=00000002
+      [016] ts=1792931999 2026-10-25T12:39:59+00:00 rest=00000002
+      [024] ts=1792932299 2026-10-25T12:44:59+00:00 rest=00000002
+      [032] ts=1792932599 2026-10-25T12:49:59+00:00 rest=00000002
+      [040] ts=1792932899 2026-10-25T12:54:59+00:00 rest=00000002
+      [048] ts=1792933199 2026-10-25T12:59:59+00:00 rest=00000002
+      [056] ts=1792933499 2026-10-25T13:04:59+00:00 rest=00000002
+      [064] ts=1792933799 2026-10-25T13:09:59+00:00 rest=00000002
+      [072] ts=1792934099 2026-10-25T13:14:59+00:00 rest=00000002
+      [080] ts=1792934399 2026-10-25T13:19:59+00:00 rest=00000002
+      [088] ts=1792934699 2026-10-25T13:24:59+00:00 rest=00000002
+      [096] ts=1792934999 2026-10-25T13:29:59+00:00 rest=00000002
+      [104] ts=1792935299 2026-10-25T13:34:59+00:00 rest=00000002
+      [112] ts=1792935599 2026-10-25T13:39:59+00:00 rest=00000002
+  t=105.428 R->H cmd=0x22 tot=3 idx=2 len=120 raw=db07de6a000000020709de6a00000002330ade6a000000025f0bde6a000000028b0cde6a00000002b70dde6a00000002e30ede6a000000020f10de6a000000023b11de6a000000026712de6a000000029313de6a00000002bf14de6a00000002eb15de6a000000021717de6a000000023a18de6a00000002
+    trying rec_size=8:
+      [000] ts=1792935899 2026-10-25T13:44:59+00:00 rest=00000002
+      [008] ts=1792936199 2026-10-25T13:49:59+00:00 rest=00000002
+      [016] ts=1792936499 2026-10-25T13:54:59+00:00 rest=00000002
+      [024] ts=1792936799 2026-10-25T13:59:59+00:00 rest=00000002
+      [032] ts=1792937099 2026-10-25T14:04:59+00:00 rest=00000002
+      [040] ts=1792937399 2026-10-25T14:09:59+00:00 rest=00000002
+      [048] ts=1792937699 2026-10-25T14:14:59+00:00 rest=00000002
+      [056] ts=1792937999 2026-10-25T14:19:59+00:00 rest=00000002
+      [064] ts=1792938299 2026-10-25T14:24:59+00:00 rest=00000002
+      [072] ts=1792938599 2026-10-25T14:29:59+00:00 rest=00000002
+      [080] ts=1792938899 2026-10-25T14:34:59+00:00 rest=00000002
+      [088] ts=1792939199 2026-10-25T14:39:59+00:00 rest=00000002
+      [096] ts=1792939499 2026-10-25T14:44:59+00:00 rest=00000002
+      [104] ts=1792939799 2026-10-25T14:49:59+00:00 rest=00000002
+      [112] ts=1792940090 2026-10-25T14:54:50+00:00 rest=00000002
+  t=105.458 R->H cmd=0x22 tot=3 idx=3 len=8 raw=6f19de6a00000002
+    trying rec_size=8:
+      [000] ts=1792940399 2026-10-25T14:59:59+00:00 rest=00000002
+
+=== 0x3D (file count / audio state-ish) ===
+  t=  25.132 H->R tot=1 idx=1 pl=
+  t=  25.192 R->H tot=1 idx=1 pl=0000
+  t= 104.348 H->R tot=1 idx=1 pl=
+  t= 104.408 R->H tot=1 idx=1 pl=0300
+  t= 104.573 H->R tot=1 idx=1 pl=
+  t= 104.588 H->R tot=1 idx=1 pl=
+  t= 104.618 R->H tot=1 idx=1 pl=0300
+  t= 106.700 H->R tot=1 idx=1 pl=
+  t= 107.133 R->H tot=1 idx=1 pl=0300
+  t= 107.883 H->R tot=1 idx=1 pl=
+  t= 108.333 R->H tot=1 idx=1 pl=0200
+  t= 109.548 H->R tot=1 idx=1 pl=
+  t= 109.938 R->H tot=1 idx=1 pl=0100
+
+=== 0x01 select / setTime-like ===
+  t=  26.107 H->R pl=2a24de6a000000
+  t=  26.152 R->H pl=ea070a190f2d2e
+  t= 105.488 H->R pl=7924de6a000000
+  t= 105.563 R->H pl=ea070a190f2f05
+
+=== Inter-transfer host commands (between completes) ===
+  after host 0x36 @ 107.328 (pl=0300):
+    t=107.493 cmd=0x34 tot=1 idx=1 pl=
+    t=107.883 cmd=0x3D tot=1 idx=1 pl=
+    t=108.498 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.513 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.528 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.543 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.558 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.573 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.588 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.603 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.618 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.633 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.648 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.663 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.678 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.693 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.708 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.723 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.738 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.753 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.768 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.783 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.798 cmd=0x36 tot=1 idx=1 pl=0200
+    t=109.041 cmd=0x34 tot=1 idx=1 pl=
+    t=109.548 cmd=0x3D tot=1 idx=1 pl=
+    t=109.953 cmd=0x36 tot=1 idx=1 pl=0100
+    t=110.299 cmd=0x34 tot=1 idx=1 pl=
+  after host 0x36 @ 108.498 (pl=0200):
+    t=108.513 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.528 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.543 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.558 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.573 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.588 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.603 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.618 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.633 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.648 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.663 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.678 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.693 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.708 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.723 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.738 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.753 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.768 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.783 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.798 cmd=0x36 tot=1 idx=1 pl=0200
+    t=109.041 cmd=0x34 tot=1 idx=1 pl=
+    t=109.548 cmd=0x3D tot=1 idx=1 pl=
+    t=109.953 cmd=0x36 tot=1 idx=1 pl=0100
+    t=110.299 cmd=0x34 tot=1 idx=1 pl=
+  after host 0x36 @ 108.513 (pl=0200):
+    t=108.528 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.543 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.558 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.573 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.588 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.603 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.618 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.633 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.648 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.663 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.678 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.693 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.708 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.723 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.738 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.753 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.768 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.783 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.798 cmd=0x36 tot=1 idx=1 pl=0200
+    t=109.041 cmd=0x34 tot=1 idx=1 pl=
+    t=109.548 cmd=0x3D tot=1 idx=1 pl=
+    t=109.953 cmd=0x36 tot=1 idx=1 pl=0100
+    t=110.299 cmd=0x34 tot=1 idx=1 pl=
+  after host 0x36 @ 108.528 (pl=0200):
+    t=108.543 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.558 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.573 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.588 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.603 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.618 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.633 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.648 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.663 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.678 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.693 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.708 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.723 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.738 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.753 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.768 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.783 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.798 cmd=0x36 tot=1 idx=1 pl=0200
+    t=109.041 cmd=0x34 tot=1 idx=1 pl=
+    t=109.548 cmd=0x3D tot=1 idx=1 pl=
+    t=109.953 cmd=0x36 tot=1 idx=1 pl=0100
+    t=110.299 cmd=0x34 tot=1 idx=1 pl=
+  after host 0x36 @ 108.543 (pl=0200):
+    t=108.558 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.573 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.588 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.603 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.618 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.633 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.648 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.663 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.678 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.693 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.708 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.723 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.738 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.753 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.768 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.783 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.798 cmd=0x36 tot=1 idx=1 pl=0200
+    t=109.041 cmd=0x34 tot=1 idx=1 pl=
+    t=109.548 cmd=0x3D tot=1 idx=1 pl=
+    t=109.953 cmd=0x36 tot=1 idx=1 pl=0100
+    t=110.299 cmd=0x34 tot=1 idx=1 pl=
+  after host 0x36 @ 108.558 (pl=0200):
+    t=108.573 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.588 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.603 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.618 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.633 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.648 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.663 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.678 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.693 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.708 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.723 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.738 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.753 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.768 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.783 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.798 cmd=0x36 tot=1 idx=1 pl=0200
+    t=109.041 cmd=0x34 tot=1 idx=1 pl=
+    t=109.548 cmd=0x3D tot=1 idx=1 pl=
+    t=109.953 cmd=0x36 tot=1 idx=1 pl=0100
+    t=110.299 cmd=0x34 tot=1 idx=1 pl=
+  after host 0x36 @ 108.573 (pl=0200):
+    t=108.588 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.603 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.618 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.633 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.648 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.663 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.678 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.693 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.708 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.723 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.738 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.753 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.768 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.783 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.798 cmd=0x36 tot=1 idx=1 pl=0200
+    t=109.041 cmd=0x34 tot=1 idx=1 pl=
+    t=109.548 cmd=0x3D tot=1 idx=1 pl=
+    t=109.953 cmd=0x36 tot=1 idx=1 pl=0100
+    t=110.299 cmd=0x34 tot=1 idx=1 pl=
+  after host 0x36 @ 108.588 (pl=0200):
+    t=108.603 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.618 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.633 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.648 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.663 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.678 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.693 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.708 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.723 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.738 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.753 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.768 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.783 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.798 cmd=0x36 tot=1 idx=1 pl=0200
+    t=109.041 cmd=0x34 tot=1 idx=1 pl=
+    t=109.548 cmd=0x3D tot=1 idx=1 pl=
+    t=109.953 cmd=0x36 tot=1 idx=1 pl=0100
+    t=110.299 cmd=0x34 tot=1 idx=1 pl=
+  after host 0x36 @ 108.603 (pl=0200):
+    t=108.618 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.633 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.648 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.663 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.678 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.693 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.708 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.723 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.738 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.753 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.768 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.783 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.798 cmd=0x36 tot=1 idx=1 pl=0200
+    t=109.041 cmd=0x34 tot=1 idx=1 pl=
+    t=109.548 cmd=0x3D tot=1 idx=1 pl=
+    t=109.953 cmd=0x36 tot=1 idx=1 pl=0100
+    t=110.299 cmd=0x34 tot=1 idx=1 pl=
+  after host 0x36 @ 108.618 (pl=0200):
+    t=108.633 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.648 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.663 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.678 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.693 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.708 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.723 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.738 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.753 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.768 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.783 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.798 cmd=0x36 tot=1 idx=1 pl=0200
+    t=109.041 cmd=0x34 tot=1 idx=1 pl=
+    t=109.548 cmd=0x3D tot=1 idx=1 pl=
+    t=109.953 cmd=0x36 tot=1 idx=1 pl=0100
+    t=110.299 cmd=0x34 tot=1 idx=1 pl=
+  after host 0x36 @ 108.633 (pl=0200):
+    t=108.648 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.663 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.678 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.693 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.708 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.723 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.738 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.753 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.768 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.783 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.798 cmd=0x36 tot=1 idx=1 pl=0200
+    t=109.041 cmd=0x34 tot=1 idx=1 pl=
+    t=109.548 cmd=0x3D tot=1 idx=1 pl=
+    t=109.953 cmd=0x36 tot=1 idx=1 pl=0100
+    t=110.299 cmd=0x34 tot=1 idx=1 pl=
+  after host 0x36 @ 108.648 (pl=0200):
+    t=108.663 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.678 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.693 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.708 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.723 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.738 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.753 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.768 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.783 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.798 cmd=0x36 tot=1 idx=1 pl=0200
+    t=109.041 cmd=0x34 tot=1 idx=1 pl=
+    t=109.548 cmd=0x3D tot=1 idx=1 pl=
+    t=109.953 cmd=0x36 tot=1 idx=1 pl=0100
+    t=110.299 cmd=0x34 tot=1 idx=1 pl=
+  after host 0x36 @ 108.663 (pl=0200):
+    t=108.678 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.693 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.708 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.723 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.738 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.753 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.768 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.783 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.798 cmd=0x36 tot=1 idx=1 pl=0200
+    t=109.041 cmd=0x34 tot=1 idx=1 pl=
+    t=109.548 cmd=0x3D tot=1 idx=1 pl=
+    t=109.953 cmd=0x36 tot=1 idx=1 pl=0100
+    t=110.299 cmd=0x34 tot=1 idx=1 pl=
+  after host 0x36 @ 108.678 (pl=0200):
+    t=108.693 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.708 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.723 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.738 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.753 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.768 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.783 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.798 cmd=0x36 tot=1 idx=1 pl=0200
+    t=109.041 cmd=0x34 tot=1 idx=1 pl=
+    t=109.548 cmd=0x3D tot=1 idx=1 pl=
+    t=109.953 cmd=0x36 tot=1 idx=1 pl=0100
+    t=110.299 cmd=0x34 tot=1 idx=1 pl=
+  after host 0x36 @ 108.693 (pl=0200):
+    t=108.708 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.723 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.738 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.753 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.768 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.783 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.798 cmd=0x36 tot=1 idx=1 pl=0200
+    t=109.041 cmd=0x34 tot=1 idx=1 pl=
+    t=109.548 cmd=0x3D tot=1 idx=1 pl=
+    t=109.953 cmd=0x36 tot=1 idx=1 pl=0100
+    t=110.299 cmd=0x34 tot=1 idx=1 pl=
+  after host 0x36 @ 108.708 (pl=0200):
+    t=108.723 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.738 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.753 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.768 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.783 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.798 cmd=0x36 tot=1 idx=1 pl=0200
+    t=109.041 cmd=0x34 tot=1 idx=1 pl=
+    t=109.548 cmd=0x3D tot=1 idx=1 pl=
+    t=109.953 cmd=0x36 tot=1 idx=1 pl=0100
+    t=110.299 cmd=0x34 tot=1 idx=1 pl=
+  after host 0x36 @ 108.723 (pl=0200):
+    t=108.738 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.753 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.768 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.783 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.798 cmd=0x36 tot=1 idx=1 pl=0200
+    t=109.041 cmd=0x34 tot=1 idx=1 pl=
+    t=109.548 cmd=0x3D tot=1 idx=1 pl=
+    t=109.953 cmd=0x36 tot=1 idx=1 pl=0100
+    t=110.299 cmd=0x34 tot=1 idx=1 pl=
+  after host 0x36 @ 108.738 (pl=0200):
+    t=108.753 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.768 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.783 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.798 cmd=0x36 tot=1 idx=1 pl=0200
+    t=109.041 cmd=0x34 tot=1 idx=1 pl=
+    t=109.548 cmd=0x3D tot=1 idx=1 pl=
+    t=109.953 cmd=0x36 tot=1 idx=1 pl=0100
+    t=110.299 cmd=0x34 tot=1 idx=1 pl=
+  after host 0x36 @ 108.753 (pl=0200):
+    t=108.768 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.783 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.798 cmd=0x36 tot=1 idx=1 pl=0200
+    t=109.041 cmd=0x34 tot=1 idx=1 pl=
+    t=109.548 cmd=0x3D tot=1 idx=1 pl=
+    t=109.953 cmd=0x36 tot=1 idx=1 pl=0100
+    t=110.299 cmd=0x34 tot=1 idx=1 pl=
+  after host 0x36 @ 108.768 (pl=0200):
+    t=108.783 cmd=0x36 tot=1 idx=1 pl=0200
+    t=108.798 cmd=0x36 tot=1 idx=1 pl=0200
+    t=109.041 cmd=0x34 tot=1 idx=1 pl=
+    t=109.548 cmd=0x3D tot=1 idx=1 pl=
+    t=109.953 cmd=0x36 tot=1 idx=1 pl=0100
+    t=110.299 cmd=0x34 tot=1 idx=1 pl=
+  after host 0x36 @ 108.783 (pl=0200):
+    t=108.798 cmd=0x36 tot=1 idx=1 pl=0200
+    t=109.041 cmd=0x34 tot=1 idx=1 pl=
+    t=109.548 cmd=0x3D tot=1 idx=1 pl=
+    t=109.953 cmd=0x36 tot=1 idx=1 pl=0100
+    t=110.299 cmd=0x34 tot=1 idx=1 pl=
+  after host 0x36 @ 108.798 (pl=0200):
+    t=109.041 cmd=0x34 tot=1 idx=1 pl=
+    t=109.548 cmd=0x3D tot=1 idx=1 pl=
+    t=109.953 cmd=0x36 tot=1 idx=1 pl=0100
+    t=110.299 cmd=0x34 tot=1 idx=1 pl=
+  after host 0x36 @ 109.953 (pl=0100):
+    t=110.299 cmd=0x34 tot=1 idx=1 pl=
+
+(analysis printed; writing multitransfer_pattern.md via companion)
