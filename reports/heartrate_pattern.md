@@ -1,96 +1,106 @@
 # Heart-rate transfer pattern
 
-**Capture:** `ring-hack-capture_heartrate.pcapng` (373 816 bytes, 5 540 frames)  
-**Scenario:** connect/pair → start HR measurement → stop HR → disconnect  
-**Ring:** `SR116-10A2` @ `73:01:06:00:10:a2` (LE connect ~4307.35 s absolute)
+**Capture:** `ring-hack-capture_heartrate.pcapng` (overwritten 2026-10-25 17:31; 781 640 bytes, 11 560 frames, ~162 s)  
+**Scenario:** connect → start HR (app showed updating BPM) → end → disconnect  
+**JY session:** t ≈ **12.5–74.3 s** (~62 s)
 
-JY traffic on this session spans **~52 s** relative (`4309.21` … `4361.01`).
+Same proprietary path as SpO₂/audio: service **`0x56FF`**, write **`0x33F3`**, notify **`0x33F4`**. Not SIG HR (`0x2A37`).
 
 ---
 
 ## Verdict
 
-Heart rate is **not** the Bluetooth SIG Heart Rate Service (`0x180D` / `0x2A37`).  
-It rides the same proprietary JY channel as audio: service **`0x56FF`**, notify **`0x33F4`** / handle **`0x0019`**.
-
-This capture shows a complete **control** sequence (open → close → end marker) but **zero live BPM samples**. During the ~29 s measurement window the ring sent only ACKs/config, while the phone mostly sent `0x3E` keepalives.
-
----
-
-## Observed control sequence
-
-Relative times are from first JY PDU (`t0 = 4309.210`).
-
-| rel (s) | Dir | Cmd | Meaning | Payload |
-|---:|---|---|---|---|
-| 2.445 | H→R | `0x08` | close HR (handshake default) | empty |
-| 2.490 | R→H | `0x08` | echo | empty |
-| **13.125** | **H→R** | **`0x07`** | **open / start HR measurement** | empty |
-| 13.590 | R→H | `0x07` | ack/echo | empty |
-| 13.620 | R→H | `0x1E` | auto-HR window pushed, **enabled** | `00 00 17 3B 01 05` |
-| 13.6–41.9 | H→R | `0x3E` ×36 | app heartbeat only | empty/keepalive |
-| *(no `0x0B` notifications in this window)* | | | | |
-| **41.941** | **H→R** | **`0x08`** | **stop HR measurement** | empty |
-| 42.016 | R→H | **`0x11`** | **HR stream end marker** | empty |
-| 42.016 | H→R | `0x1E` | auto-HR **disabled** | `00 00 17 3B 00 05` |
-| 42.016 | R→H | `0x08` | close echo | empty |
-| 42.391 | R→H | `0x1E` | echo disable | `00 00 17 3B 00 05` |
-| 51.436 | H→R | `0x43` | teardown-ish | empty |
-| 51.796 | R→H | `0x43` | ack | `01` |
-
-Exact wire frames (10-byte JY header, little-endian):
-
-```
-open:   FE FC 07 00 01 00 01 00 00 00
-close:  FE FC 08 00 01 00 01 00 00 00
-end:    FE FC 11 00 01 00 01 00 00 00     # ring → host
-auto on:  FE FC 1E 00 01 00 01 00 06 00  00 00 17 3B 01 05
-auto off: FE FC 1E 00 01 00 01 00 06 00  00 00 17 3B 00 05
-```
-
-### `0x1E` payload layout (**Observed**)
-
-| Byte | Value | Meaning |
+| Role | Cmd | Payload |
 |---|---|---|
-| 0–1 | `00 00` | window hour/min |
-| 2–3 | `17 3B` | end 23:59 |
-| 4 | `01` / `00` | enable / disable |
-| 5 | `05` | interval minutes (5) |
+| **Start** | `0x07` (7) | empty |
+| **Auto-HR enable** (app also writes) | `0x1E` (30) | `00 00 17 3B 01 05` |
+| **Live sample** | `0x0B` (11) notify | `u32le ts` + `00 00` + **`u8 BPM`** |
+| **Stream end** (ring) | `0x11` (17) | empty |
+| **Stop** (when sent) | `0x08` (8) | empty |
 
-Matches LoraFit’s `setAutoHeartRateSetting` shape. Here the **ring** emits enable=`1` right after `0x07`; the **host** writes enable=`0` when stopping.
+Live samples are confirmed in this capture (**8× `0x0B`**, BPM 75→64).
 
 ---
 
-## What did *not* appear (important)
+## Observed sequence
 
-| Expected (from JY/APK notes) | In this capture |
+Relative to first JY PDU (`t0 = 12.544`).
+
+| rel (s) | Dir | Cmd | Notes |
+|---:|---|---|---|
+| ~2.7 | H/R | `0x08` | handshake “close HR” default |
+| **11.670** | **H→R** | **`0x07`** | **start measurement** (empty) |
+| 12.000 | H→R | `0x1E` | auto-HR window **enable=1** |
+| 12.12 / 12.17 | R→H | `0x07` / `0x1E` | echoes |
+| 12–22 | H→R | `0x3E` | keepalives (~10 s settle before first BPM) |
+| **22.89–34.25** | **R→H** | **`0x0B` ×8** | live BPM stream (~1 Hz) |
+| **34.246** | **R→H** | **`0x11`** | **session end** (empty) |
+| later | R→H | `0x28` | `01` then `02` (unclassified; after HR) |
+| 61.7 | H/R | `0x43` | teardown |
+
+Exact frames:
+
+```
+open:    FE FC 07 00 01 00 01 00 00 00
+auto on: FE FC 1E 00 01 00 01 00 06 00  00 00 17 3B 01 05
+sample:  FE FC 0B 00 01 00 01 00 07 00  be 3c de 6a 00 00 4b   # BPM=75
+end:     FE FC 11 00 01 00 01 00 00 00
+close:   FE FC 08 00 01 00 01 00 00 00   # seen at handshake; not repeated at end in this file
+```
+
+### Sample payload (`0x0B`) — **Observed**
+
+Same shape as SpO₂ `0x18`:
+
+| Offset | Field |
 |---|---|
-| Live samples as cmd **`0x0B` (11)** on `0x0019`: typically `ts` + BPM | **None** |
-| SIG HR notifications `0x2A37` | **None** (only Battery `0x2A19` reads) |
-| Any other notify handle carrying BPM | **None** — all 40 notifications were on `0x0019`, and none were `0x0B` |
+| 0–3 | `u32le` device timestamp |
+| 4–5 | `00 00` |
+| 6 | **BPM** (uint8) |
 
-So this experiment proves **how measurement is started/stopped**, not the on-air BPM framing. Prior independent RE describes cmd `0x0B` payloads as device-time + BPM (example bpm `0x5F` = 95). Re-run with finger firmly on the sensor (and preferably not only on charger) to capture samples.
+| rel (s) | BPM | ts |
+|---:|---:|---|
+| 22.890 | 75 | 1792949438 |
+| 23.910 | 74 | 1792949438 |
+| 24.945 | 70 | 1792949440 |
+| 25.980 | 66 | 1792949440 |
+| 27.000 | 64 | 1792949442 |
+| 28.005 | 64 | 1792949442 |
+| 29.040 | 64 | 1792949444 |
+| 34.245 | 64 | 1792949449 |
 
-Ring also emitted empty **`0x11`** immediately when stopping — consistent with “HR session end” (APK path: open `7` → ticks `11` → end `17`).
+- Interval ≈ **1.0–1.05 s** (one gap ~5.2 s before last sample)  
+- Range **64–75**, mean **67.6**  
+- First sample ~**11 s** after open (sensor settle)
+
+In this run the ring emitted **`0x11` end** without a captured host `0x08`/`0x1E` disable at stop (unlike the earlier no-sample capture). CLI should still support explicit `0x08` stop; treat `0x11` as “stream finished.”
 
 ---
 
-## FSM for a future CLI
+## FSM for CLI
 
 ```
 subscribe 0x33F4
-handshake (setTime, appInfo, optional closeHR 0x08)
-on user start:
+on start:
   write empty 0x07
-  expect echo 0x07; may see 0x1E enable=1
-  listen for 0x0B notifications → parse BPM  # not seen in this pcap
-on user stop:
+  optional: write 0x1E enable=1 (vendor does)
+  on notify 0x0B: bpm = payload[6], ts = u32le payload[0:4]
+on stop:
   write empty 0x08
-  expect 0x11 (end) and/or echo 0x08
-  optional: write 0x1E with enable=0 (vendor does this)
+  optional: 0x1E enable=0
+  expect possible empty 0x11 from ring
 ```
 
-Keepalives (`0x3E` every ~2 s) continued during measurement; they are not HR data.
+---
+
+## vs prior HR capture / SpO₂
+
+| | Old HR pcap | This HR pcap | SpO₂ |
+|---|---|---|---|
+| Open | `0x07` empty | `0x07` empty | `0x17` + `01` |
+| Samples | none | **`0x0B` stream ~1 Hz** | single `0x18` |
+| Value byte | — | BPM | SpO₂% |
+| End | `0x11` + host `0x08` | **`0x11`** (host close not seen) | `0x19` + `0x17=00` |
 
 ---
 
@@ -98,14 +108,8 @@ Keepalives (`0x3E` every ~2 s) continued during measurement; they are not HR dat
 
 | Claim | Level |
 |---|---|
-| Start = empty `0x07` on `0x33F3` | **Observed** |
-| Stop = empty `0x08`; ring may send `0x11` end | **Observed** |
-| Auto-HR config `0x1E` 6-byte window toggled with session | **Observed** |
-| Live BPM = `0x0B` notify payloads | **Inferred** from protocol family / APK (not present in this pcap) |
-| Why no samples here | **Unknown** (sensor contact, settling time, firmware gate, …) |
-
----
-
-## Not related to HR (also in session)
-
-Standard connect noise: device info `0x25`, name `0x44`, features `0x37`, offline count `0x3D=0`, lists `0x21`/`0x22`, battery JY `0x06` → `50 00` (80%, not charging), BAS handle `0x002C` reads, HID CCCD enables, SMP pairing ~4310–4313.
+| Start = empty `0x07` | **Observed** |
+| Live BPM = `0x0B`, last byte rate | **Observed** |
+| Framing `ts4 + 0000 + u8` | **Observed** |
+| End = empty `0x11` | **Observed** |
+| `0x28` after HR | **Unknown** |
