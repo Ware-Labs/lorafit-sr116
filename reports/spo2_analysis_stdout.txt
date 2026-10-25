@@ -1,0 +1,125 @@
+﻿total_PDUs=150 clusters=1
+  cluster0: n=150 t=12.745..60.040 span=47.296s
+
+======== CLUSTER 0 (t0=12.745) ========
+CMD histogram:
+  0x3E     H->R:  87  heartbeat
+  0x1D     H->R:   8  status
+  0x1D     R->H:   8  status
+  0x21     R->H:   5  list21
+  0x17     H->R:   4  openCloseSpo2
+  0x17     R->H:   3  openCloseSpo2
+  0x22     R->H:   3  list22
+  0x06     R->H:   2  getBattery
+  0x24     H->R:   2  
+  0x24     R->H:   2  
+  0x25     R->H:   2  deviceInfo
+  0x2F     H->R:   2  audioState
+  0x2F     R->H:   2  audioState
+  0x37     R->H:   2  features
+  0x44     R->H:   2  name
+  nonJY    R->H:   2  
+  0x01     H->R:   1  setTime
+  0x01     R->H:   1  setTime
+  0x08     H->R:   1  closeHR
+  0x08     R->H:   1  closeHR
+  0x18     R->H:   1  spo2Sample
+  0x19     R->H:   1  
+  0x1A     H->R:   1  setAppInfo
+  0x1A     R->H:   1  setAppInfo
+  0x21     H->R:   1  list21
+  0x22     H->R:   1  list22
+  0x3D     H->R:   1  offlineCount
+  0x3D     R->H:   1  offlineCount
+  0x43     H->R:   1  teardown
+  0x43     R->H:   1  teardown
+
+Timeline (0x3E collapsed):
+  rel=  0.000 abs=    12.745 R->H cmd=0x25(deviceInfo    ) len=12 pl=98007301060010a2daa501a0
+  rel=  0.015 R->H NON-JY 0c98007301060010a23a004800
+  rel=  0.045 abs=    12.790 R->H cmd=0x44(name          ) len=11 pl=0a53523131362d31304132
+  rel=  0.060 abs=    12.805 R->H cmd=0x37(features      ) len=2 pl=0001
+  rel=  0.090 abs=    12.834 H->R cmd=0x2F(audioState    ) len=2 pl=0000
+  rel=  0.105 R->H cmd=0x1D(status) len=14 pl=d33ade6a00000215000091004710
+  rel=  0.136 abs=    12.880 R->H cmd=0x06(getBattery    ) len=2 pl=5000
+  rel=  0.165 abs=    12.910 R->H cmd=0x2F(audioState    ) len=2 pl=0000
+  ... (1x host 0x3E) ...
+  rel=  0.870 abs=    13.615 H->R cmd=0x3D(offlineCount  ) len=0
+  rel=  0.915 abs=    13.660 R->H cmd=0x3D(offlineCount  ) len=2 pl=0000
+  rel=  1.245 abs=    13.990 H->R cmd=0x21(list21        ) len=1 pl=00
+  rel=  1.680 abs=    14.425 H->R cmd=0x1D(status        ) len=0
+  ... (1x host 0x3E) ...
+  rel=  1.771 R->H cmd=0x1D(status) len=14 pl=d53ade6a00000215000091004710
+  rel=  1.875 R->H cmd=0x21(list21) len=112 (list chunk)
+  rel=  1.890 abs=    14.634 H->R cmd=0x1D(status        ) len=0
+  rel=  1.905 abs=    14.649 H->R cmd=0x1D(status        ) len=0
+  rel=  1.905 R->H cmd=0x21(list21) len=112 (list chunk)
+  rel=  1.950 R->H cmd=0x21(list21) len=112 (list chunk)
+  rel=  1.980 R->H cmd=0x1D(status) len=14 pl=d53ade6a00000215000091004710
+  rel=  2.010 R->H cmd=0x21(list21) len=112 (list chunk)
+  rel=  2.040 abs=    14.784 H->R cmd=0x1D(status        ) len=0
+  rel=  2.040 R->H cmd=0x21(list21) len=16 (list chunk)
+  rel=  2.100 R->H cmd=0x1D(status) len=14 pl=d53ade6a00000215000091004710
+  rel=  2.205 abs=    14.949 H->R cmd=0x01(setTime       ) len=7 pl=d63ade6a000000
+  rel=  2.265 abs=    15.010 R->H cmd=0x01(setTime       ) len=7 pl=ea070a1911161e
+  rel=  2.355 abs=    15.099 H->R cmd=0x1A(setAppInfo    ) len=13 pl=001f74966785e9a3ae7d9e26ca
+  rel=  2.415 abs=    15.160 R->H cmd=0x1A(setAppInfo    ) len=13 pl=001f74966785e9a3ae7d9e26ca
+  rel=  2.505 abs=    15.250 H->R cmd=0x08(closeHR       ) len=0 pl=(empty)
+  rel=  2.550 abs=    15.295 R->H cmd=0x08(closeHR       ) len=0 pl=(empty)
+  rel=  2.670 abs=    15.415 H->R cmd=0x22(list22        ) len=1 pl=00
+  rel=  2.730 R->H cmd=0x22(list22) len=120 (list chunk)
+  rel=  2.760 R->H cmd=0x22(list22) len=120 (list chunk)
+  rel=  2.790 abs=    15.535 R->H cmd=0x22(list22        ) len=8 pl=6f19de6a00000002
+  rel=  2.820 abs=    15.565 H->R cmd=0x24(              ) len=1 pl=00
+  rel=  2.880 abs=    15.625 R->H cmd=0x24(              ) len=14 pl=7f27de6a00004c63360100361013
+  ... (2x host 0x3E) ...
+  rel=  4.425 abs=    17.170 H->R cmd=0x1D(status        ) len=0
+  rel=  4.620 abs=    17.365 R->H cmd=0x25(deviceInfo    ) len=12 pl=98007301060010a2daa501a0
+  rel=  4.635 R->H NON-JY 0c98007301060010a23a004800
+  rel=  4.650 abs=    17.395 H->R cmd=0x1D(status        ) len=0
+  rel=  4.682 abs=    17.426 R->H cmd=0x44(name          ) len=11 pl=0a53523131362d31304132
+  rel=  4.755 abs=    17.500 R->H cmd=0x37(features      ) len=2 pl=0001
+  rel=  4.770 R->H cmd=0x1D(status) len=14 pl=d83ade6a00000215000091004710
+  rel=  4.815 abs=    17.560 R->H cmd=0x06(getBattery    ) len=2 pl=5000
+  rel=  4.860 abs=    17.605 H->R cmd=0x2F(audioState    ) len=2 pl=0000
+  rel=  4.950 R->H cmd=0x1D(status) len=14 pl=d83ade6a00000215000091004710
+  rel=  4.951 abs=    17.696 R->H cmd=0x2F(audioState    ) len=2 pl=0000
+  ... (22x host 0x3E) ...
+  rel=  6.045 abs=    18.790 H->R cmd=0x24(              ) len=1 pl=00
+  rel=  6.120 abs=    18.865 R->H cmd=0x24(              ) len=14 pl=7f27de6a00004c63360100361013
+  ... (1x host 0x3E) ...
+  rel=  7.770 abs=    20.515 H->R cmd=0x17(openCloseSpo2 ) len=1 pl=01
+  ... (51x host 0x3E) ...
+  rel= 30.180 abs=    42.925 R->H cmd=0x18(spo2Sample    ) len=7 spo2?=98 pl=f13ade6a000062 ts4=1792948977 iso=2026-10-25T17:22:57+00:00
+  ... (4x host 0x3E) ...
+  rel= 38.071 abs=    50.815 H->R cmd=0x17(openCloseSpo2 ) len=1 pl=00
+  rel= 38.462 abs=    51.206 R->H cmd=0x17(openCloseSpo2 ) len=1 pl=00
+  rel= 38.776 abs=    51.520 H->R cmd=0x17(openCloseSpo2 ) len=1 pl=00
+  ... (1x host 0x3E) ...
+  rel= 39.150 abs=    51.895 R->H cmd=0x17(openCloseSpo2 ) len=1 pl=00
+  ... (2x host 0x3E) ...
+  rel= 43.741 abs=    56.485 H->R cmd=0x17(openCloseSpo2 ) len=1 pl=00
+  rel= 43.801 abs=    56.545 R->H cmd=0x17(openCloseSpo2 ) len=1 pl=00
+  rel= 43.801 abs=    56.546 H->R cmd=0x1D(status        ) len=0
+  rel= 43.861 R->H cmd=0x1D(status) len=14 pl=ff3ade6a00000215000091004710
+  rel= 44.521 abs=    57.265 H->R cmd=0x1D(status        ) len=0
+  rel= 44.581 R->H cmd=0x1D(status) len=14 pl=003bde6a00000215000091004710
+  ... (2x host 0x3E) ...
+  rel= 47.236 abs=    59.981 H->R cmd=0x43(teardown      ) len=0
+  rel= 47.296 abs=    60.040 R->H cmd=0x43(teardown      ) len=1 pl=01
+
+SpO2 sample table (0x18):
+  rel= 30.180 val=98 ts4=1792948977 hex=f13ade6a000062
+  n=1 range=98..98
+
+SpO2 open/close brackets (0x17/0x18 and neighbors):
+  rel=  2.505 H->R 0x08 closeHR pl=
+  rel=  2.550 R->H 0x08 closeHR pl=
+  rel=  7.770 H->R 0x17 openCloseSpo2 pl=01
+  rel= 30.180 R->H 0x18 spo2Sample pl=f13ade6a000062
+  rel= 38.071 H->R 0x17 openCloseSpo2 pl=00
+  rel= 38.462 R->H 0x17 openCloseSpo2 pl=00
+  rel= 38.776 H->R 0x17 openCloseSpo2 pl=00
+  rel= 39.150 R->H 0x17 openCloseSpo2 pl=00
+  rel= 43.741 H->R 0x17 openCloseSpo2 pl=00
+  rel= 43.801 R->H 0x17 openCloseSpo2 pl=00
