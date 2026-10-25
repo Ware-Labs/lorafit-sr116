@@ -1,0 +1,31 @@
+# Personal / sensitive
+gatt_map.json
+*.gatt.json
+recordings/
+downloads/
+*.wav
+*.mp3
+*.opus
+*.bin
+reports/transfer_*.bin
+reports/bulk_*.bin
+reports/att_fefc_raw.txt
+reports/gatt_discovery_verbose.txt
+bugreports/
+*.zip
+*.pcapng
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+
+# IDE
+.idea/
+.vscode/
+
+reports/*.ogg
+reports/*.wav
+
