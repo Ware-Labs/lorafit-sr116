@@ -2,60 +2,81 @@
 
 Personal reverse-engineering workspace for a **personally owned** LoraFit SR116 voice-recording ring. Goal: understand recording transfer over Bluetooth so a local-only client can replace the manufacturer app. **No evidence of cloud exfiltration has been established** from BLE analysis alone.
 
+## Textual app (recommended)
+
+Local TUI covering high/medium-confidence retrieval: connect, day steps/health sync, live HR & SpO₂, offline audio download/play, sleep row list. Day HR/SpO₂ min/max/avg are computed from a **local SQLite** store (same approach as the vendor app).
+
+```powershell
+pip install -r requirements.txt
+python -m sr116
+```
+
+| Tab | What it does |
+|---|---|
+| Connect | Bleak scan / connect; enables `0x33F4` notify |
+| Dashboard | Sync `0x1D` / `0x21` / `0x24`; show local vitals stats |
+| Recordings | `0x3D` count; FIFO download (`0x40`/`0x34`); Opus→ogg/wav |
+| Heart rate | Live BPM (`0x07` / `0x0B` / `0x08`) |
+| SpO₂ | Spot reading (`0x17` / `0x18`) |
+| Sleep | Raw `0x22` rows (timestamps + flags; no stage labels) |
+
+**Safety**
+
+- Only **allowlisted** JY commands are written (see `sr116/protocol/commands.py`).
+- **Delete after download is off by default.** Checking the box echoes `0x36`, which **erases** the file on the ring.
+- Downloads land in `recordings/`; vitals DB in `data/sr116.db`.
+- HID scroll / DFU / free-form replay are **not** implemented.
+
 ## Contents
 
 | Path | Purpose |
 |---|---|
-| `btsnooz_hci.log` | First Android HCI capture (do not modify) |
-| `sr116_second_btsnooz_hci.log` | Second capture during offline recording download (do not modify) |
-| `SR116_Reverse_Engineering_Experiment_Report.md` | Experiment history |
-| `tools/analyze_btsnoop.py` | Reproducible btsnoop → ATT/L2CAP analyzer |
-| `reports/` | Generated capture comparison + CSV timelines |
-| `sr116_cli.py` | Safe bleak-based BLE explorer (Windows-friendly) |
-| `reports/engineering_findings.md` | Verified facts, gaps, safe next steps |
+| `sr116/` | Textual app + protocol/feature library |
+| `sr116_cli.py` | Low-level bleak explorer (scan/inspect/read/listen) |
+| `tools/` | Capture analyzers + Opus converter |
+| `reports/` | Pattern docs and analysis outputs |
+| `btsnooz_hci.log` / `sr116_second_btsnooz_hci.log` | Android HCI captures (do not modify) |
 
-## Analyze HCI captures
-
-```powershell
-pip install -r requirements.txt   # bleak only needed for the CLI
-python tools/analyze_btsnoop.py
-python tests/test_btsnoop.py -v
-```
-
-Outputs: `reports/capture_comparison.md`, `packets.csv`, `handle_summary.csv`, `timeline.csv`.
-
-## BLE client (read-only by default)
+## Analyze HCI / sniffer captures
 
 ```powershell
 pip install -r requirements.txt
-python sr116_cli.py scan
-python sr116_cli.py inspect <address> -o gatt_map.json
-python sr116_cli.py read <address> 00002a19-0000-1000-8000-00805f9b34fb   # Battery Level example
-python sr116_cli.py listen <address> <notify-uuid> --duration 20
+python tools/analyze_btsnoop.py
+python -m unittest discover -s tests -v
 ```
 
-**Safety rules**
+Authoritative sniffer notes: `reports/sniffer_capture_findings.md`, plus `*_pattern.md` for audio multi-transfer, HR, SpO₂, steps, scroll.
 
-- Default paths never write vendor commands.
-- `listen` writes a CCCD (not strictly passive); you choose the characteristic.
-- `replay` is **disabled** until a command is verified from complete (non-truncated) payloads. Do not brute-force custom characteristics — risk of erase / DFU / factory reset.
-- Do not commit personal recordings or full bug-report ZIPs.
+## Low-level BLE CLI (read-oriented)
 
-## What the captures show (summary)
+```powershell
+python sr116_cli.py scan
+python sr116_cli.py inspect <address> -o gatt_map.json
+python sr116_cli.py read <address> 00002a19-0000-1000-8000-00805f9b34fb
+python sr116_cli.py listen <address> 000033f4-0000-1000-8000-00805f9b34fb --duration 20
+```
 
-**Authoritative:** Nordic sniffer `ring-hack-capture.pcapng` (full payloads). See `reports/sniffer_capture_findings.md`.
+`replay` remains disabled in this CLI; use `python -m sr116` for verified writes.
 
-- Recording protocol is **`FE FC` on service `0x56FF`**: write `0x33F3` (handle `0x0017`), notify `0x33F4` (handle `0x0019`).
-- Download = host `0x40` then empty `0x34`; ring sends sequenced `0x34` chunks (**12×40 B Opus / 240 ms** each); ends with `0x36` (**deletes** file if echoed).
-- Codec: **Opus** TOC `0xB8`, mono, 20 ms frames — playback works.
-- Handles `0x0042`/`0x0044` are **HID**, not the recording pipe.
+## Protocol summary
+
+- Service **`0x56FF`**: write **`0x33F3`**, notify **`0x33F4`**, framing **`FE FC`**.
+- Offline audio: `0x3D` → `0x40` → empty `0x34` chunks (12×40 B Opus) → `0x36` (delete if echoed) / `0x35` empty.
+- Live HR: `0x07` / samples `0x0B` / stop `0x08`.
+- SpO₂: `0x17` on/off / sample `0x18`.
+- Steps: `0x1D` totals, `0x21` buckets, `0x24` health samples.
 
 ### Play a captured transfer body
 
 ```powershell
-pip install -r requirements.txt
 python tools/opus_bin_to_audio.py reports/transfer_0x34_bodies.bin --play
-# also writes reports/transfer_0x34.ogg and .wav
 ```
 
-Also: `reports/engineering_findings.md` (HCI era), `reports/capture_comparison.md`.
+## Manual ring checklist
+
+1. Connect via Connect tab; battery/name appear in status.
+2. Dashboard → Sync day; steps total should match vendor app when possible.
+3. Heart rate → Start; BPM updates; Dashboard HR min/max/avg move.
+4. SpO₂ → Start; wait ~20s for a `%`; Stop.
+5. Recordings → Refresh count → Download next **without** delete; Play last WAV.
+6. Sleep → Pull list; rows show without claiming stages.

@@ -2,6 +2,7 @@
 gatt_map.json
 *.gatt.json
 recordings/
+data/
 downloads/
 *.wav
 *.mp3
