@@ -1,0 +1,122 @@
+﻿PDUs=128 absolute_t=4309.210..4361.006
+session_rel=0..51.796s (t0=4309.210)
+
+=== CMD histogram ===
+  0x3E     H->R:  67  heartbeat
+  0x1D     R->H:   9  status?
+  0x1D     H->R:   7  status?
+  0x21     R->H:   5  list21
+  0x22     R->H:   3  list22
+  0x08     H->R:   2  closeHeartRate
+  0x08     R->H:   2  closeHeartRate
+  0x1E     R->H:   2  setAutoHR?
+  0x24     H->R:   2  
+  0x24     R->H:   2  
+  0x25     R->H:   2  deviceInfo
+  0x37     R->H:   2  features?
+  0x3D     H->R:   2  offlineCount
+  0x3D     R->H:   2  offlineCount
+  0x44     R->H:   2  name
+  nonJY    R->H:   2  
+  0x01     H->R:   1  setTime
+  0x01     R->H:   1  setTime
+  0x06     R->H:   1  getBattery
+  0x07     H->R:   1  openHeartRate
+  0x07     R->H:   1  openHeartRate
+  0x11     R->H:   1  
+  0x1A     H->R:   1  setAppInfo
+  0x1A     R->H:   1  setAppInfo
+  0x1E     H->R:   1  setAutoHR?
+  0x21     H->R:   1  list21
+  0x22     H->R:   1  list22
+  0x2F     H->R:   1  audioState
+  0x2F     R->H:   1  audioState
+  0x43     H->R:   1  
+  0x43     R->H:   1  
+
+=== Full timeline (keepalives collapsed) ===
+  rel=  0.000 abs=  4309.210 R->H cmd=0x25(deviceInfo    ) len=12 pl=98007301060010a2daa501a0
+  rel=  0.001 R->H NON-JY 0c98007301060010a23a004800
+  rel=  0.015 abs=  4309.225 R->H cmd=0x44(name          ) len=11 pl=0a53523131362d31304132
+  rel=  0.060 abs=  4309.270 R->H cmd=0x37(features?     ) len=2 pl=0001
+  rel=  0.061 abs=  4309.271 R->H cmd=0x1D(status?       ) len=14 pl=243ade6a00000215000091004710
+  ... (1x host 0x3E keepalive) ...
+  rel=  0.855 abs=  4310.065 H->R cmd=0x3D(offlineCount  ) len=0
+  rel=  0.900 abs=  4310.110 R->H cmd=0x3D(offlineCount  ) len=2 pl=0000
+  rel=  1.230 abs=  4310.441 H->R cmd=0x21(list21        ) len=1 pl=00
+  rel=  1.365 abs=  4310.575 H->R cmd=0x1D(status?       ) len=0
+  rel=  1.410 abs=  4310.620 R->H cmd=0x1D(status?       ) len=14 pl=253ade6a00000215000091004710
+  rel=  1.440 abs=  4310.651 R->H cmd=0x21(list21        ) len=112 pl=73f7dd6a00002c01e00100000d0074019ff8dd6a00005802
+  rel=  1.470 abs=  4310.680 R->H cmd=0x21(list21        ) len=112 pl=5704de6a0000b4008c05000026004c04db07de6a00003c00
+  rel=  1.500 abs=  4310.710 R->H cmd=0x21(list21        ) len=112 pl=7f27de6a00007800550600002b00e804ab28de6a0000a401
+  ... (1x host 0x3E keepalive) ...
+  rel=  1.545 abs=  4310.755 R->H cmd=0x21(list21        ) len=112 pl=b32fde6a0000cc06d40d00006000b70adf30de6a0000f807
+  rel=  1.590 abs=  4310.800 R->H cmd=0x21(list21        ) len=16 pl=1339de6a000058020215000091004710
+  rel=  1.680 abs=  4310.890 H->R cmd=0x1D(status?       ) len=0
+  rel=  1.725 abs=  4310.935 R->H cmd=0x1D(status?       ) len=14 pl=253ade6a00000215000091004710
+  rel=  1.830 abs=  4311.040 H->R cmd=0x1D(status?       ) len=0
+  rel=  1.890 abs=  4311.100 R->H cmd=0x1D(status?       ) len=14 pl=253ade6a00000215000091004710
+  rel=  1.980 abs=  4311.190 H->R cmd=0x22(list22        ) len=1 pl=00
+  rel=  2.040 abs=  4311.250 R->H cmd=0x22(list22        ) len=120 pl=3ef6dd6a0000000273f7dd6a000000029ff8dd6a00000002
+  rel=  2.070 abs=  4311.280 R->H cmd=0x22(list22        ) len=120 pl=db07de6a000000020709de6a00000002330ade6a00000002
+  rel=  2.100 abs=  4311.310 R->H cmd=0x22(list22        ) len=8 pl=6f19de6a00000002
+  rel=  2.145 abs=  4311.355 H->R cmd=0x01(setTime       ) len=7 pl=273ade6a000000
+  rel=  2.205 abs=  4311.415 R->H cmd=0x01(setTime       ) len=7 pl=ea070a19111323
+  rel=  2.295 abs=  4311.505 H->R cmd=0x1A(setAppInfo    ) len=13 pl=001f74966785e9a3ae7d9e26ca
+  rel=  2.355 abs=  4311.565 R->H cmd=0x1A(setAppInfo    ) len=13 pl=001f74966785e9a3ae7d9e26ca
+  rel=  2.445 abs=  4311.655 H->R cmd=0x08(closeHeartRate) len=0 pl=(empty)
+  rel=  2.490 abs=  4311.700 R->H cmd=0x08(closeHeartRate) len=0 pl=(empty)
+  rel=  2.610 abs=  4311.820 H->R cmd=0x24(              ) len=1 pl=00
+  rel=  2.655 abs=  4311.865 R->H cmd=0x24(              ) len=14 pl=7f27de6a00004c63360100361013
+  ... (1x host 0x3E keepalive) ...
+  rel=  4.005 abs=  4313.215 R->H cmd=0x25(deviceInfo    ) len=12 pl=98007301060010a2daa501a0
+  rel=  4.020 R->H NON-JY 0c98007301060010a23a004800
+  rel=  4.035 abs=  4313.245 H->R cmd=0x1D(status?       ) len=0
+  rel=  4.080 abs=  4313.290 R->H cmd=0x44(name          ) len=11 pl=0a53523131362d31304132
+  rel=  4.095 abs=  4313.305 R->H cmd=0x37(features?     ) len=2 pl=0001
+  rel=  4.140 abs=  4313.350 R->H cmd=0x1D(status?       ) len=14 pl=283ade6a00000215000091004710
+  rel=  4.155 abs=  4313.365 H->R cmd=0x1D(status?       ) len=0
+  rel=  4.170 abs=  4313.380 R->H cmd=0x06(getBattery    ) len=2 pl=5000
+  rel=  4.245 abs=  4313.455 R->H cmd=0x1D(status?       ) len=14 pl=293ade6a00000215000091004710
+  rel=  4.290 abs=  4313.500 H->R cmd=0x2F(audioState    ) len=2 pl=0000
+  rel=  4.290 abs=  4313.500 R->H cmd=0x1D(status?       ) len=14 pl=293ade6a00000215000091004710
+  rel=  4.380 abs=  4313.590 R->H cmd=0x2F(audioState    ) len=2 pl=0000
+  ... (1x host 0x3E keepalive) ...
+  rel=  4.575 abs=  4313.785 H->R cmd=0x3D(offlineCount  ) len=0
+  rel=  4.620 abs=  4313.830 R->H cmd=0x3D(offlineCount  ) len=2 pl=0000
+  ... (22x host 0x3E keepalive) ...
+  rel=  9.435 abs=  4318.646 H->R cmd=0x24(              ) len=1 pl=00
+  rel= 10.140 abs=  4319.350 R->H cmd=0x24(              ) len=14 pl=7f27de6a00004c63360100361013
+  ... (2x host 0x3E keepalive) ...
+  rel= 13.125 abs=  4322.336 H->R cmd=0x07(openHeartRate ) len=0 pl=(empty)
+  rel= 13.590 abs=  4322.800 R->H cmd=0x07(openHeartRate ) len=0 pl=(empty)
+  rel= 13.620 abs=  4322.830 R->H cmd=0x1E(setAutoHR?    ) len=6 pl=0000173b0105
+  ... (34x host 0x3E keepalive) ...
+  rel= 41.941 abs=  4351.151 H->R cmd=0x08(closeHeartRate) len=0 pl=(empty)
+  rel= 42.016 abs=  4351.226 R->H cmd=0x11(              ) len=0
+  rel= 42.016 abs=  4351.226 H->R cmd=0x1E(setAutoHR?    ) len=6 pl=0000173b0005
+  rel= 42.016 abs=  4351.227 R->H cmd=0x08(closeHeartRate) len=0 pl=(empty)
+  ... (1x host 0x3E keepalive) ...
+  rel= 42.391 abs=  4351.601 R->H cmd=0x1E(setAutoHR?    ) len=6 pl=0000173b0005
+  ... (2x host 0x3E keepalive) ...
+  rel= 48.106 abs=  4357.316 H->R cmd=0x1D(status?       ) len=0
+  rel= 48.436 abs=  4357.646 H->R cmd=0x1D(status?       ) len=0
+  rel= 48.481 abs=  4357.691 R->H cmd=0x1D(status?       ) len=14 pl=543ade6a00000215000091004710
+  rel= 48.511 abs=  4357.721 R->H cmd=0x1D(status?       ) len=14 pl=553ade6a00000215000091004710
+  ... (2x host 0x3E keepalive) ...
+  rel= 51.436 abs=  4360.646 H->R cmd=0x43(              ) len=0
+  rel= 51.796 abs=  4361.006 R->H cmd=0x43(              ) len=1 pl=01
+
+=== Heart-rate sample table (cmd 0x0B) ===
+  (none)
+
+=== Open/stream/close brackets ===
+  rel=  2.445 H->R 0x08 closeHeartRate pl=
+  rel=  2.490 R->H 0x08 closeHeartRate pl=
+  rel= 13.125 H->R 0x07 openHeartRate pl=
+  rel= 13.590 R->H 0x07 openHeartRate pl=
+  rel= 13.620 R->H 0x1E setAutoHR? pl=0000173b0105
+  rel= 41.941 H->R 0x08 closeHeartRate pl=
+  rel= 42.016 H->R 0x1E setAutoHR? pl=0000173b0005
+  rel= 42.016 R->H 0x08 closeHeartRate pl=
+  rel= 42.391 R->H 0x1E setAutoHR? pl=0000173b0005
