@@ -33,9 +33,11 @@ python -m sr116
 |---|---|
 | `sr116/` | Textual app + protocol/feature library |
 | `sr116_cli.py` | Low-level bleak explorer (scan/inspect/read/listen) |
-| `tools/` | Capture analyzers + Opus converter |
-| `reports/` | Pattern docs and analysis outputs |
-| `btsnooz_hci.log` / `sr116_second_btsnooz_hci.log` | Android HCI captures (do not modify) |
+| [`docs/howto-nrf-sniffer.md`](docs/howto-nrf-sniffer.md) | Flash an nRF52840 Dongle, capture in Wireshark, repeat the six scenarios |
+| `tools/` | HCI analyzer, per-capture scripts, Opus converter |
+| `reports/` | Pattern docs. Start at `sniffer_capture_findings.md`; HCI-era notes are historical |
+| `btsnooz_hci.log` / `sr116_second_btsnooz_hci.log` | Truncated Android HCI captures (do not modify) |
+| `ring-hack-capture*.pcapng` | Nordic sniffer captures (gitignored; full ATT bodies) |
 
 ## Analyze HCI / sniffer captures
 
@@ -45,7 +47,20 @@ python tools/analyze_btsnoop.py
 python -m unittest discover -s tests -v
 ```
 
-Authoritative sniffer notes: `reports/sniffer_capture_findings.md`, plus `*_pattern.md` for audio multi-transfer, HR, SpO₂, steps, scroll.
+Sniffer captures (full payloads) supersede the HCI handle guess. Read `reports/sniffer_capture_findings.md`, then:
+
+| Capture | Doc |
+|---|---|
+| One recording download | `reports/sniffer_capture_findings.md` |
+| Three recordings, 1/3…3/3 | `reports/multitransfer_pattern.md` |
+| Live heart rate | `reports/heartrate_pattern.md` |
+| SpO₂ | `reports/spo2_pattern.md` |
+| Tap / scroll (HID, not JY) | `reports/scroll_pattern.md` |
+| Desk sync: steps, LEDs, HR/SpO₂ cards | `reports/steps_pattern.md` |
+
+`reports/engineering_findings.md` and `reports/capture_comparison.md` describe the truncated `btsnooz` logs. `SR116_Reverse_Engineering_Experiment_Report.md` and `Cursor_Instructions_SR116_Protocol_Analysis.md` are the original brief; both now point at the results above.
+
+To take a new capture: [`docs/howto-nrf-sniffer.md`](docs/howto-nrf-sniffer.md).
 
 ## Low-level BLE CLI (read-oriented)
 

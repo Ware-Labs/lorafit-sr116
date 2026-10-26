@@ -1,5 +1,7 @@
 # LoraFit SR116 Voice Recorder Ring — Reverse-Engineering Experiment Report
 
+**Status (2026-10-26):** sections 2–4 below are the original HCI-era notes and are kept as history. Later Nordic sniffer captures answered the open questions: audio is Opus on GATT `0x56FF` (`0x33F3`/`0x33F4`, handles `0x0017`/`0x0019`), not the HID handles `0x0042`/`0x0044`. A local client is `python -m sr116`. Current maps: `reports/sniffer_capture_findings.md` and the `reports/*_pattern.md` files. How to repeat a capture: `docs/howto-nrf-sniffer.md`.
+
 **Date:** 2026-10-25  
 **Device:** LoraFit voice recorder ring, BLE advertisement `SR116-10A2`  
 **Phone:** Google Pixel 10 Pro (Android)  

@@ -1,6 +1,7 @@
 # Nordic Sniffer Capture Analysis — `ring-hack-capture.pcapng`
 
 **Capture type:** Nordic BLE sniffer (Wireshark/`nordic_ble`)  
+**How to repeat:** `docs/howto-nrf-sniffer.md` (scenario A)  
 **Size / span:** 414,312 bytes file; **6,031 frames** over **~60.6 s** (on-air bytes ~208 KB)  
 **Device:** `SR116-10A2` @ `73:01:06:00:10:a2`  
 **Central:** `52:c0:91:bf:69:07` (phone/app that requested pairing)
@@ -118,9 +119,18 @@ So each BLE packet = **240 ms** of audio. This capture: 33 packets → **7.92 s*
 
 ---
 
-## Safe next steps
+## Follow-on (2026-10-26)
 
-1. Keep using `sr116_cli.py inspect/listen` — subscribe to `0x33F4` only with intent (CCCD write).
-2. **Do not** replay `0x34`/`0x01`/`0x1A` until you approve exact hex (risk: unclear side effects; `0x1A` may be auth-related).
-3. Codec: analyze `transfer_0x34_bodies.bin` (frame sync on `b8`…, try OEM decoder from APK via JADX) — still no write needed.
-4. Optional: if you approve, implement opt-in `replay` for the two verified prep/start frames only, against a disposable recording.
+Local client: `python -m sr116`. Allowlisted writes cover the verified download and vitals commands. Echoing `0x36` still deletes the on-ring file and stays behind an explicit checkbox.
+
+Later captures in this repo:
+
+| File | Pattern doc |
+|---|---|
+| `ring-hack-capture_multitransfer.pcapng` | `reports/multitransfer_pattern.md` |
+| `ring-hack-capture_heartrate.pcapng` | `reports/heartrate_pattern.md` |
+| `ring-hack-capture_spO2.pcapng` | `reports/spo2_pattern.md` |
+| `ring-hack-capture_scroll.pcapng` | `reports/scroll_pattern.md` |
+| `ring-hack-capture_steps.pcapng` | `reports/steps_pattern.md` |
+
+How to repeat them: `docs/howto-nrf-sniffer.md`. Opus playback of this transfer: `python tools/opus_bin_to_audio.py reports/transfer_0x34_bodies.bin --play`.

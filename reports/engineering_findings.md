@@ -1,9 +1,10 @@
 # SR116 Engineering Findings
 
-**Date:** 2026-10-25  
-**Inputs:** `btsnooz_hci.log`, `sr116_second_btsnooz_hci.log`, experiment report, nRF Connect hints  
+**HCI analysis date:** 2026-10-25  
+**Updated:** 2026-10-26 after Nordic sniffer captures and the Textual client  
+**Inputs:** `btsnooz_hci.log`, `sr116_second_btsnooz_hci.log`, `ring-hack-capture*.pcapng`  
 **Analyzer:** `tools/analyze_btsnoop.py` (unit tests: `tests/test_btsnoop.py`)  
-**Policy:** No unverified writes sent to the ring.
+**Client:** `python -m sr116` (allowlisted JY writes). `sr116_cli.py replay` stays disabled.
 
 ---
 
@@ -57,18 +58,16 @@ First capture (sync/playback session) used the same handle pairs but with differ
 2. **`0x0042` / `0x0044` short complete PDUs:** single-byte values, e.g. Write_Cmd `52 42 00 XX` and Ntf `1b 44 00 XX`. Consistent with **flow-control / ACK / credit** interleaved with truncated large PDUs on the same handles (large PDUs show `original_length` up to 256).
 3. **MTU (second):** phone requests 517, ring responds **247** → ATT payloads up to 244 bytes fit the 256-byte HCI original lengths seen when truncated.
 
-### UUID mapping limits (**Observed**)
+### UUID mapping (**Observed** on sniffer; HCI logs did not contain it)
 
-Discovery responses in-window mostly yield CCCD UUID `0x2902` at descriptor handles. **Characteristic value UUIDs for `0x0017`/`0x0019`/`0x0042`/`0x0044` were not recovered** from these truncated captures. nRF Connect hints remain the best external map:
+The truncated HCI logs did not recover characteristic UUIDs. An early nRF Connect hint that bound `0x56FF` to `0x0042`/`0x0044` was **wrong**. `ring-hack-capture.pcapng` GATT discovery shows:
 
-| Service (hint) | Char (hint) | Props (hint) | Candidate handle (inferred, unproven) |
-|---|---|---|---|
-| `0x56FF` | `0x33F3` | write / write-cmd | `0x0042` |
-| `0x56FF` | `0x33F4` | notify | `0x0044` |
-| `0xFF12` | `0xFF15` | read / write-cmd | `0x0017` |
-| `0xFF12` | `0xFF14` | notify | `0x0019` |
-
-Handle↔UUID must be confirmed with `sr116_cli.py inspect` or nRF export before any write tooling keys off UUIDs.
+| Handle | UUID | Role |
+|---|---|---|
+| `0x0017` | `0x33F3` | JY write (`FE FC` commands) |
+| `0x0019` | `0x33F4` | JY notify (responses and audio chunks) |
+| `0x001A` | `0x2902` | CCCD for `0x33F4` |
+| `0x0042` / nearby | HID | Digitizer / scroll, not audio |
 
 ---
 
@@ -84,16 +83,21 @@ HCI `btsnooz` suggested bulk on `0x0042`/`0x0044` from opcode counts; that traff
 
 ---
 
-## 3. Missing evidence (**Unknown**)
+## 3. Evidence status
+
+HCI `btsnooz` still cannot show payload bodies. The sniffer captures closed the items below.
 
 | Topic | Status |
 |---|---|
-| Full command bytes for download start / file select | Truncated — cannot verify |
-| Chunk headers, sequence, CRC | Truncated |
-| Audio codec / container magic | Not present in retained bytes; absence ≠ proof audio offline |
-| `0xFEF5` 128-bit UUIDs | Need GATT inspect export |
-| App cloud upload behavior | Out of scope for HCI; needs network capture of test data |
-| Authentication beyond “connected, not bonded” | Unknown at app layer |
+| Download start | **Observed:** empty `0x40` then empty `0x34` |
+| Multi-file queue | **Observed:** FIFO; `0x36` remaining count; `0x35` when empty. Echoing `0x36` deletes the file |
+| Audio codec | **Observed:** Opus TOC `0xB8`, 12×40 B per chunk; playback verified |
+| Live HR / SpO₂ | **Observed:** `0x0B` / `0x18` (`reports/heartrate_pattern.md`, `reports/spo2_pattern.md`) |
+| Day steps / health samples | **Observed:** `0x1D`, `0x21`, `0x24` (`reports/steps_pattern.md`) |
+| Day HR min/max/avg | **App-side** over live samples + `0x24`, not a ring aggregate command |
+| Scroll | **Observed:** HID report ID 2 on `0x003D` (`reports/scroll_pattern.md`) |
+| `0xFEF5` 128-bit UUIDs | Still not required for retrieval |
+| App cloud upload | Still unknown; BLE cannot answer it |
 
 ---
 
@@ -101,27 +105,20 @@ HCI `btsnooz` suggested bulk on `0x0042`/`0x0044` from opcode counts; that traff
 
 | Action | Safe? | Notes |
 |---|---|---|
-| `sr116_cli.py scan` | Yes | Passive discovery |
-| `inspect` | Yes | GATT enumeration only |
-| `read` of standard Battery / Device Info | Mostly yes | Still a read; avoid random vendor reads |
-| `listen` on a user-chosen notify UUID | Cautious | Writes CCCD; bounded duration |
-| `replay` / any vendor write | **No — blocked** | No complete verified command payloads |
-| Brute-force / sweep / DFU / erase | **Forbidden** | Per instructions |
-
-**Stop condition honored:** no unverified commands will be sent without explicit approval and exact hex review.
+| `python -m sr116` | Yes, allowlisted | Connect, day sync, live HR/SpO₂, audio download, sleep list |
+| Download with delete checkbox off | Yes | Does not echo `0x36` |
+| Download with delete checkbox on | Destructive | Echoes `0x36` and erases that file on the ring |
+| `sr116_cli.py scan` / `inspect` | Yes | Passive discovery / GATT map |
+| `read` of Battery / Device Info | Mostly yes | Avoid random vendor reads |
+| `listen` on `0x33F4` | Cautious | Writes the CCCD |
+| `sr116_cli.py replay` | **Still blocked** | Use the Textual app instead of free-form hex |
+| Brute-force / sweep / DFU | **Forbidden** | |
 
 ---
 
-## 5. Path to a disposable recording download
+## 5. Local client
 
-1. **Full GATT map** via `inspect` → bind handles `0x0017`/`0x0019`/`0x0042`/`0x0044` to UUIDs.
-2. **Non-truncated capture** during one disposable download:
-   - Prefer nRF Sniffer / Ellisys / Frontline, or
-   - Full bug report + compare truncation, or
-   - `adb pull` of snoop if the build allows.
-3. From complete PDUs, document FSM: connect → (auth?) → list → start → chunk/ACK → end.
-4. Implement opt-in `download` only after byte-exact command verification, checksum policy, and local decode check.
-5. Only then consider an Android Kotlin client.
+`python -m sr116` implements the verified FSM: audio FIFO (`0x3D` → `0x40` → `0x34` → optional `0x36` / `0x35`), live HR, SpO₂, and day steps/health. Day min/max/avg live in `data/sr116.db`. Setup for new captures is `docs/howto-nrf-sniffer.md`.
 
 ---
 

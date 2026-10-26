@@ -1,6 +1,7 @@
 # Steps / daily health sync pattern
 
 **Capture:** `ring-hack-capture_steps.pcapng` (223 540 bytes, 3 196 frames, ~29.5 s)  
+**How to repeat:** `docs/howto-nrf-sniffer.md` (scenario F)  
 **Scenario:** ring on desk → connect → wait for steps to populate → green LEDs flash briefly → UI shows day steps + HR/SpO₂ min/max/current  
 **JY session:** t ≈ **11.56–24.07 s** (~12.5 s of protocol)
 

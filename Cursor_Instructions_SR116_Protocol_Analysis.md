@@ -1,5 +1,7 @@
 # Cursor Task: Reverse Engineer LoraFit SR116 Recording Transfer
 
+**Status (2026-10-26):** this brief has been carried out. Do not treat the early handle guess (`0x0042`/`0x0044` as the recording pipe) as current. Authoritative results are `README.md`, `reports/sniffer_capture_findings.md`, `reports/*_pattern.md`, and the Textual client under `sr116/`. New sniffer runs: `docs/howto-nrf-sniffer.md`. The safety rule still holds: no writes outside the allowlist, and do not echo `0x36` unless deletion is intended.
+
 You are an embedded/Bluetooth protocol engineer. Work in this repository to analyze two Android Bluetooth HCI logs and build a cautious, local-only BLE client for a personally owned LoraFit SR116 voice-recording ring. **Do the actual analysis and implement runnable tooling; do not stop at a plan.**
 
 ## Inputs

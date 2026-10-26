@@ -1,6 +1,7 @@
 # Multi-file offline transfer pattern
 
 **Capture:** `ring-hack-capture_multitransfer.pcapng` (~122 s, 12 303 frames)  
+**How to repeat:** `docs/howto-nrf-sniffer.md` (scenario B)  
 **Scenario:** 3 offline recordings on ring → open LoraFit → recordings UI shows 1/3, 2/3, 3/3 → force-close  
 **Channel:** GATT `0x56FF` / write `0x33F3` (`0x0017`) / notify `0x33F4` (`0x0019`), JY framing `FE FC`
 

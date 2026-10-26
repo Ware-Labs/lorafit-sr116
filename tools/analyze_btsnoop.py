@@ -1328,8 +1328,9 @@ def _protocol_conclusions(analyses: list[CaptureAnalysis]) -> str:
         "with bulk notifications/writes whose contents are missing from `btsnooz`."
     )
     lines.append(
-        "- **Inferred (unproven UUID bind):** nRF hints map service `0x56FF` (`0x33F3`/`0x33F4`) to the "
-        "`0x0042`/`0x0044` pair and `0xFF12` (`0xFF15`/`0xFF14`) to `0x0017`/`0x0019`. Confirm with GATT inspect."
+        "- **Superseded:** an early nRF hint bound `0x56FF` to handles `0x0042`/`0x0044`. "
+        "Sniffer GATT discovery later showed `0x33F3`/`0x33F4` at `0x0017`/`0x0019`, and HID at `0x0042`/`0x0044`. "
+        "See `reports/sniffer_capture_findings.md`."
     )
     lines.append("")
     lines.append("### What truncation prevents")

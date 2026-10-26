@@ -1,6 +1,7 @@
 # SpO₂ transfer pattern
 
 **Capture:** `ring-hack-capture_spO2.pcapng` (599 728 bytes, 8 842 frames, ~105 s file)  
+**How to repeat:** `docs/howto-nrf-sniffer.md` (scenario D)  
 **Scenario:** connect → start SpO₂ → end SpO₂ → disconnect  
 **Ring session (JY on `0x0017`/`0x0019`):** t ≈ **12.7–60.0 s** (~47 s)
 

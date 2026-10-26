@@ -1,6 +1,7 @@
 # Heart-rate transfer pattern
 
 **Capture:** `ring-hack-capture_heartrate.pcapng` (overwritten 2026-10-25 17:31; 781 640 bytes, 11 560 frames, ~162 s)  
+**How to repeat:** `docs/howto-nrf-sniffer.md` (scenario C)  
 **Scenario:** connect → start HR (app showed updating BPM) → end → disconnect  
 **JY session:** t ≈ **12.5–74.3 s** (~62 s)
 

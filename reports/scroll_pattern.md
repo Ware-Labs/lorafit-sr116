@@ -1,6 +1,7 @@
 # Scroll / tap gesture pattern
 
 **Capture:** `ring-hack-capture_scroll.pcapng` (481 424 bytes, 7 116 frames, ~85 s)  
+**How to repeat:** `docs/howto-nrf-sniffer.md` (scenario E)  
 **Scenario:** connect/pair → single tap → double tap → repeat → disconnect; phone scrolled down and up  
 
 Scrolling is **not** on the JY `0x33F3`/`0x33F4` channel. It is **BLE HID** digitizer input.
