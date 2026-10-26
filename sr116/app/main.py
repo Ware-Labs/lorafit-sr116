@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
+import threading
 from pathlib import Path
-from typing import Optional
+from typing import Any, Callable, Optional
 
 from textual import on, work
 from textual.app import App, ComposeResult
@@ -144,6 +145,13 @@ class SR116App(App[None]):
         table.add_columns("UTC", "unix", "flags_hex")
         self._elog("Ready. Scan or connect to an SR116.")
 
+    def _call_ui(self, callback: Callable[..., Any], *args: Any) -> None:
+        """Update the UI from the app thread or from a Bleak callback thread."""
+        if threading.get_ident() == self._thread_id:
+            callback(*args)
+        else:
+            self.call_from_thread(callback, *args)
+
     def _elog(self, msg: str) -> None:
         self.state.log(msg)
         try:
@@ -218,13 +226,13 @@ class SR116App(App[None]):
     async def do_connect(self, address: str) -> None:
         await self.state.clear_session()
         self._set_status(f"Connecting {address}…")
-        session = JySession(address, on_log=lambda m: self.call_from_thread(self._elog, m))
+        session = JySession(address, on_log=lambda m: self._call_ui(self._elog, m))
         try:
             await session.connect()
             self.state.bind_session(session)
 
             def _log_from_ble(m: str) -> None:
-                self.call_from_thread(self._elog, m)
+                self._call_ui(self._elog, m)
 
             session._on_log = _log_from_ble
             await session.handshake()
@@ -238,11 +246,11 @@ class SR116App(App[None]):
             self._elog(f"[green]Connected {address}[/]")
             if self.state.hr:
                 self.state.hr.on_sample(
-                    lambda ts, bpm: self.call_from_thread(self._on_hr, ts, bpm)
+                    lambda ts, bpm: self._call_ui(self._on_hr, ts, bpm)
                 )
             if self.state.spo2:
                 self.state.spo2.on_sample(
-                    lambda ts, v: self.call_from_thread(self._on_spo2, ts, v)
+                    lambda ts, v: self._call_ui(self._on_spo2, ts, v)
                 )
         except Exception as e:
             self._set_status(f"Connect failed: {e}")
@@ -351,7 +359,7 @@ class SR116App(App[None]):
         try:
             f = await self.state.audio.download_next(
                 delete_after=delete,
-                on_progress=lambda m: self.call_from_thread(self._elog, m),
+                on_progress=lambda m: self._call_ui(self._elog, m),
             )
             if f is None:
                 self.query_one("#rec_last", Static).update("Last download: queue empty")
@@ -375,7 +383,7 @@ class SR116App(App[None]):
         try:
             files = await self.state.audio.download_all(
                 delete_after=delete,
-                on_progress=lambda m: self.call_from_thread(self._elog, m),
+                on_progress=lambda m: self._call_ui(self._elog, m),
             )
             self.query_one("#rec_last", Static).update(
                 f"Downloaded {len(files)} file(s)"
